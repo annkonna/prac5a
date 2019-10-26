@@ -27,7 +27,18 @@ void dump_characters(void *databuf, int size) {
  * to hold the decoded text.
  */
 int decode_data(char *decode, void *data) {
-
+    int num;
+    num = *(int *)data;
+    while(num != 0){
+        data = data + sizeof(int);
+        //printf("%c\n", *(char *)data);
+        for (int i = 0; i < num; i++){
+            *decode++ = *(char *)data++;
+        }
+        num = *(int *)data;
+    }
+    *decode = '\0';
+    //printf("%c\n", *(char *)decode);
     return 0;
 }
 
